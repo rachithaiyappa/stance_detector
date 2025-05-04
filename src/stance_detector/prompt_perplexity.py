@@ -27,7 +27,7 @@ class Perplexity:
 
     def get_perplexity(
         self,
-        input_file: Union[str, Path, pd.DataFrame],
+        input_file: Union[str, Path],
         prompt_col: str = "Prompt",
         output_path: Optional[Union[str, Path]] = None,
         batch_splits: int = 10,
