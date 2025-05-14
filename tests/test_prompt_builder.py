@@ -102,6 +102,8 @@ def test_build_prompts_context_free_flag(sample_csv):
     # All prompts should have empty tweet in the prompt string
     assert all([row == "" or "Tweet" not in row for row in df["Prompt"]])
     # Output files should have _free before .parquet
-    assert any(str(p).endswith("_free.parquet") for p in TEST_OUTPUT_DIR.glob("*.parquet"))
+    assert any(
+        str(p).endswith("_free.parquet") for p in TEST_OUTPUT_DIR.glob("*.parquet")
+    )
     # Label should have _free in it
     assert all("_free" in label for label in df["label"].unique())
