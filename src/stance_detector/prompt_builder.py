@@ -46,8 +46,8 @@ class PromptBuilder:
         # If only two options, remove {op3} and the preceding comma/or
         if len(ops) == 2:
             instr = instr_template
-            instr = instr.replace(", or {op3}.", ".")
-            instr = instr.replace(" or {op3}.", ".")
+            instr = instr.replace(", or {op3}.", "")
+            instr = instr.replace(" or {op3}.", "")
             instr = instr.replace(", {op2}", ", or {op2}.")
             return instr.format(op1=ops[0], op2=ops[1], op3="")
         else:
