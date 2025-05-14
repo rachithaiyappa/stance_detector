@@ -87,7 +87,7 @@ class Perplexity:
                 input_file,
             )
         self.logger.info(f"Processed {total} records")
-        return ppl
+        return df
 
     def save_results(self, df: pd.DataFrame, input_path: str) -> None:
         base = splitext(basename(input_path))[0]
