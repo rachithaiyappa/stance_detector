@@ -46,8 +46,8 @@ def test_get_perplexity_with_path(perplexity_instance, tmp_parquet):
     ppl = perplexity_instance.get_perplexity(
         input_file=tmp_parquet, prompt_col="Prompt", batch_splits=2
     )
-    assert isinstance(ppl, list)
-    assert all(x == 42.0 for x in ppl)
+    assert isinstance(ppl, pd.DataFrame)
+    assert all(x == 42.0 for x in ppl['perplexity'])
 
 
 def test_interim_and_final_save(perplexity_instance, tmp_parquet, tmp_path):

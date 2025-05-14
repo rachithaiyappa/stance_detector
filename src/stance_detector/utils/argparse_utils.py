@@ -157,4 +157,11 @@ def evaluation_args():
         required=False,
         help="Path to save the evaluation results",
     )
+    parser.add_argument(
+        "--decoding",
+        type=str,
+        required=True,
+        help="greedy or pmi or aft",
+    )
+
     return parser

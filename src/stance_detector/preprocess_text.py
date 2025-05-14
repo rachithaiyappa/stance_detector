@@ -12,6 +12,7 @@ from stance_detector.utils.argparse_utils import preprocess_args
 class PreProcessText:
     def __init__(self):
         self.logger = CustomLogger(__name__).get_logger()
+        self.logger.info("Initiated PreProcessor")
 
     def preprocess_text(
         self,
@@ -25,7 +26,7 @@ class PreProcessText:
         # self.is_pstance = "pstance" in input_path.lower()
         self.logger.info(f"Loaded CSV file: {input_path}")
 
-        self.df["bertweet_preprocessed"] = self.df["Tweet"].apply(normalizeTweet)
+        self.df["Tweet"] = self.df["Tweet"].apply(normalizeTweet)
 
         self._save_preprocessed_tweet(
             output_path=output_path,
