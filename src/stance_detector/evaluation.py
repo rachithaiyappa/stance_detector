@@ -88,7 +88,7 @@ class Evaluator:
         prompt_template: Optional[str] = None,
         instruction: Optional[str] = None,
         output_path: Optional[Union[Path, str]] = None,
-        decoding: str = "greedy",
+        decoding: str = None,
     ) -> Dict[str, Any]:
         with open(input_path, "rb") as f:
             df = pkl.load(f)
@@ -185,7 +185,9 @@ class Evaluator:
 def main():
     args = evaluation_args.parse_args()
     evaluator = Evaluator()
-    evaluator.evaluate(args.input, args.prompt_template, args.instruction, args.output)
+    evaluator.evaluate(
+        args.input, args.prompt_template, args.instruction, args.output, args.decoding
+    )
 
 
 if __name__ == "__main__":

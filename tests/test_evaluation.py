@@ -78,6 +78,7 @@ def test_evaluate_pipeline(sample_eval_data, tmp_path):
         prompt_template="3f",
         instruction="1",
         output_path=tmp_path / "eval_output.csv",
+        decoding="greedy",
     )
     assert isinstance(result, dict)
     assert "favor_f1" in result
