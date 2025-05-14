@@ -1,6 +1,21 @@
 import argparse
 
 
+def preprocess_args():
+    parser = argparse.ArgumentParser(description="Prompt Builder")
+    parser.add_argument(
+        "--input_path", type=str, required=True, help="Path to the CSV file"
+    )
+
+    parser.add_argument(
+        "--output_path",
+        type=str,
+        help="Path to save the output preprocessed text (optional)",
+    )
+
+    return parser
+
+
 def prompt_builder_args():
     parser = argparse.ArgumentParser(description="Prompt Builder")
     parser.add_argument(
@@ -114,6 +129,7 @@ def decoder_args():
         help="Path to save the decoded output (parquet format)",
     )
     return parser
+
 
 def evaluation_args():
     parser = argparse.ArgumentParser(description="Evaluation Arguments")
