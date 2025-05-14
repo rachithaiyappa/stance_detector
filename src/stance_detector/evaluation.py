@@ -10,6 +10,7 @@ from stance_detector.utils.logger import CustomLogger
 from stance_detector.utils.argparse_utils import evaluation_args
 import pickle as pkl
 
+
 class Evaluator:
     def __init__(self):
         self.logger = CustomLogger(__name__).get_logger()
@@ -111,7 +112,9 @@ class Evaluator:
                 "Assuming filename to be of the kind *prompt3f_instruction1*"
                 " and extracting prompt_template (3f) and instruction (1) from filename..."
             )
-            match = re.search(r"prompt([a-zA-Z0-9]+)_instruction(\d+)", Path(input_path).stem)
+            match = re.search(
+                r"prompt([a-zA-Z0-9]+)_instruction(\d+)", Path(input_path).stem
+            )
             if not match:
                 self.logger.error(
                     f"Could not extract prompt/instruction from filename: {Path(input_path).stem}"
@@ -132,7 +135,9 @@ class Evaluator:
         # Map generated tokens to stance labels
         mapping_func = self.evaluation_function.get(prompt_template)
         if mapping_func is None:
-            raise ValueError(f"No evaluation function for prompt_template: {prompt_template}")
+            raise ValueError(
+                f"No evaluation function for prompt_template: {prompt_template}"
+            )
         df["Assigned"] = df["Assigned"].map(mapping_func)
 
         # Calculate metrics for AGAINST
@@ -141,7 +146,11 @@ class Evaluator:
 
         # Calculate metrics for FAVOR
         tp_f, fp_f, tn_f, fn_f = self.evaluation_favor(df)
-        favor_f1 = 100 * 2 * tp_f / (2 * tp_f + fp_f + fn_f) if (2 * tp_f + fp_f + fn_f) > 0 else 0
+        favor_f1 = (
+            100 * 2 * tp_f / (2 * tp_f + fp_f + fn_f)
+            if (2 * tp_f + fp_f + fn_f) > 0
+            else 0
+        )
 
         # Prepare results DataFrame
         results_df = pd.DataFrame(
@@ -158,7 +167,7 @@ class Evaluator:
                 "against_tn": [tn],
                 "against_fn": [fn],
                 "against_f1": [against_f1],
-                "overall_f1": [(favor_f1 + against_f1)/2]
+                "overall_f1": [(favor_f1 + against_f1) / 2],
             }
         )
 
@@ -172,10 +181,12 @@ class Evaluator:
         self.logger.info(f"Processed evaluation for {len(df)} records")
         return results_df.to_dict(orient="records")[0]
 
+
 def main():
     args = evaluation_args.parse_args()
     evaluator = Evaluator()
     evaluator.evaluate(args.input, args.prompt_template, args.instruction, args.output)
+
 
 if __name__ == "__main__":
     main()
