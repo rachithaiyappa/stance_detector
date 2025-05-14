@@ -13,3 +13,4 @@ data/*.parquet
 logs/
 data/*.pkl
 data/
+.vscode/
