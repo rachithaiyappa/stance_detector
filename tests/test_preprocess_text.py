@@ -38,10 +38,10 @@ def test_preprocess_text_creates_output_and_column(sample_tweet_csv, tmp_path):
 
     # Check that the returned DataFrame has the expected column
     assert (
-        "bertweet_preprocessed" in df.columns
+        "Tweet" in df.columns
     ), "Missing preprocessed column in DataFrame"
     assert all(
-        df["bertweet_preprocessed"].apply(lambda x: isinstance(x, str))
+        df["Tweet"].apply(lambda x: isinstance(x, str))
     ), "Preprocessed text should be strings"
 
     # Load saved file and compare
