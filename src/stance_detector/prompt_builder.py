@@ -165,44 +165,6 @@ class PromptBuilder:
         df_copy["class_tokens"] = [class_tokens] * len(df_copy)
         return df_copy
 
-    def _build_prompts_for_template(
-        self,
-        df_filtered: pd.DataFrame,
-        template: str,
-        template_key: str,
-        instruction: str,
-        instr_key: str,
-        class_tokens: List[str],
-        context_free: bool,
-    ) -> pd.DataFrame:
-        """Build prompts and labels for a given template/instruction combination."""
-        if context_free:
-            row = df_filtered.iloc[0]
-            prompt = template.format(
-                instruction=instruction,
-                tweet="",
-                target=row["Target"],
-            )
-            prompts = [prompt]
-            labels = [f"{template_key}_free--{instr_key}"]
-            df_copy = df_filtered.iloc[[0]].copy()
-        else:
-            prompts = []
-            labels = []
-            for _, row in df_filtered.iterrows():
-                prompt = template.format(
-                    instruction=instruction,
-                    tweet=row["Tweet"],
-                    target=row["Target"],
-                )
-                prompts.append(prompt)
-                labels.append(f"{template_key}--{instr_key}")
-            df_copy = df_filtered.copy()
-        df_copy["Prompt"] = prompts
-        df_copy["label"] = labels
-        df_copy["class_tokens"] = [class_tokens] * len(df_copy)
-        return df_copy
-
     def _log_prompt_building(self, context_free: bool):
         if context_free:
             self.logger.info(
