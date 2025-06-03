@@ -42,7 +42,7 @@ TBD but for now
 
 ```
 @article{aiyappa2024benchmarking,
-  title={Benchmarking zero-shot stance detection with FlanT5-XXL: Insights from training data, prompting, and decoding strategies into its near-SoTA performance},
+  title={Zero-Shot Stance Detection in Practice: Insights on Training, Prompting, and Decoding with a Capable Lightweight LLM},
   author={Aiyappa, Rachith and Senthilmani, Shruthi and An, Jisun and Kwak, Haewoon and Ahn, Yong-Yeol},
   journal={arXiv preprint arXiv:2403.00236},
   year={2024}
