@@ -12,5 +12,7 @@ wheels/
 data/*.parquet
 logs/
 data/*.pkl
-data/
+data/*.txt
+data/*target*.csv
+data/*preprocessed*.csv
 .vscode/

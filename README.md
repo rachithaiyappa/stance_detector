@@ -1,12 +1,16 @@
 # Stance Detector
 
+## Title
+Zero-Shot Stance Detection in Practice: Insights on Training, Prompting, and Decoding with a Capable Lightweight LLM
+
+## Description
 This repository contains code to reproduce the results from the paper:  
-[Zero-Shot Stance Detection in Practice: Insights on Training, Prompting, and Decoding with a Capable Lightweight LLM](https://arxiv.org/abs/2403.00236)
+[Zero-Shot Stance Detection in Practice: Insights on Training, Prompting, and Decoding with a Capable Lightweight LLM](https://arxiv.org/abs/2403.00236).
 
 ## Features
 
 - **Pre-process Tweets** (Optional):  Clean and normalize tweet data for downstream tasks.
-- **Prompt Construction:** Build prompts for LLMs using various templates and instructions.  
+- **Prompt Construction:** Build prompts for LLMs using various templates and instructions to infer the stance towards a target based on some text (tweet)  
   See [`src/prompt_config.py`](src/prompt_config.py) for available prompt templates and instructions.
 - **Prompt Perplexity Measurement:** Evaluate prompt perplexity using an encoder-decoder model (FlanT5-XXL).
 - **Stance Labeling:**
@@ -15,7 +19,7 @@ This repository contains code to reproduce the results from the paper:
   - AfT decoding
 - **Evaluation:** Assess stance labels produced by different decoding strategies.
 
-## Dataset:
+## Dataset
 The `data/` directory contains the text (tweets) for which stance is to be detected along with the target of interest.
 The `csv` file has the following columns   
 - `ID`: identifier for the tweet
@@ -23,7 +27,7 @@ The `csv` file has the following columns
 - `Tweet`: Tweet (text) 
 - `Stance`: Ground truth stance label to use for downstream evaluation. 
 
-Example csv file:
+### Example csv file
 
 ```csv
 ID,Target,Tweet,Stance
@@ -49,7 +53,7 @@ We have included the data from which all the results of the paper can be reprodu
 - `semeval_taskB.csv`: Tweets for the target belonging to Task 6B
     - Donald Trump.
 
-## Getting Started
+## Getting Started (Usage Instructions)
 
 1. **Clone the repository:**
    ```sh
